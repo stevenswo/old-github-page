@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function getPddiktiData(nim) {
+            const xhttp = new XMLHttpRequest();
+            var url = "https://api-frontend.kemdikbud.go.id/hit_mhs/";
+            url += nim;
+            xhttp.onload = function() {
+                document.getElementById("fname").innerHTML = this.responseText;
+            }
+            xhttp.open("GET", url, true);
+            xhttp.send();
+        }
+
+        function validateNim(){
+            let t_nim = document.getElementById("nim").value;
+            let text;
+            var isValid;
+            if(t_nim === "") {
+                text = "Kolom NIM harus diisi!";
+                isValid = false;
+            } else if(t_nim.length !== 12) {
+                text = "NIM Harus memiliki 12 angka karakter!";
+                isValid = false;
+            } else {
+                text = "Input valid";
+                isValid = true;
+            }
+            document.getElementById("warning-error").innerHTML = text;
+            if(isValid) {
+                getData(t_nim);
+                getPddiktiData(t_nim);
+            }
+        }
+        //0 8 2 0 1 1 8 3 3 0 6  0
+        //0 1 2 3 4 5 6 7 8 9 10 11
+        function getData(nim) {
+            var url = "https://cybercampus.unair.ac.id/foto_mhs/";
+            url += nim + ".JPG";
+            var angkatan = 20 + nim[2] + nim[3];
+            var kode_prodi = nim[6] + nim[7] + nim[8];
+            var prodi;
+            switch(kode_prodi) {
+                case "133":
+                    prodi = "Teknik Lingkungan";
+                    break;
+                case "233":
+                    prodi = "Matematika";
+                    break;
+                case "333":
+                    prodi = "Fisika";
+                    break;
+                case "433":
+                    prodi = "Biologi";
+                    break;
+                case "533":
+                    prodi = "Kimia";
+                    break;
+                case "633":
+                    prodi = "Sistem Informasi";
+                    break;
+                case "733":
+                    prodi = "Teknik Biomedis";
+                    break;
+                case "833":
+                    prodi = "Statistika";
+                    break;
+            }
+
+            document.getElementById("foto").setAttribute("src", url);
+            document.getElementById("angkatan").innerHTML = angkatan;
+            document.getElementById("prodi").innerHTML = prodi;
+        }
+    </script>
+</head>
+<body>
+    <label>NIM: </label><br>
+    <input type="text" id="nim"><br>
+    <input type="button" value="Submit" onclick="validateNim()">
+    <p id="warning-error"></p>
+    <label>Nama Mahasiswa: </label><br>
+    <div id="fname">Pending</div>
+    <label>Tahun Angkatan: </label><br>
+    <p id="angkatan"></p>
+    <label>Program Studi: </label><br>
+    <p id="prodi"></p>
+    <label>Foto Mahasiswa: </label> <br>
+    <img id="foto" src="" alt="Foto CyberCampus" width="150" height="200"><br>
+    
+</body>
+</html>
