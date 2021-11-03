@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script>
         function getPddiktiData(nim) {
             const xhttp = new XMLHttpRequest();
@@ -16,7 +17,6 @@
             xhttp.open("GET", url, true);
             xhttp.send();
         }
-
         function validateNim(){
             let t_nim = document.getElementById("nim").value;
             let text;
@@ -79,18 +79,26 @@
     </script>
 </head>
 <body>
-    <label>NIM: </label><br>
-    <input type="text" id="nim"><br>
-    <input type="button" value="Submit" onclick="validateNim()">
-    <p id="warning-error"></p>
-    <label>Nama Mahasiswa: </label><br>
-    <div id="fname">Pending</div>
-    <label>Tahun Angkatan: </label><br>
-    <p id="angkatan"></p>
-    <label>Program Studi: </label><br>
-    <p id="prodi"></p>
-    <label>Foto Mahasiswa: </label> <br>
-    <img id="foto" src="" alt="Foto CyberCampus" width="150" height="200"><br>
-    
+    <div class="container">
+        <h1 class="align-center">
+            Database Mahasiswa Unair
+        </h1>
+        <p><b>Input NIM</b></p>
+        <input class="form-control" type="text" id="nim"><br>
+        <input class="btn btn-success btn-sm" type="button" value="Submit" placeholder="082011833060" onclick="validateNim()"><br><br>
+        <div id="warning-error"class="alert alert-warning" role="alert">
+            
+        </div>
+        <div class="row">
+            <p class="col-sm-2"><b>Nama Mahasiswa</b></p>
+            <p class="col-sm-10">Pending</p>
+            <p class="col-sm-2"><b>Tahun Angkatan</b></p>
+            <p class="col-sm-10" id="angkatan">-</p>
+            <p class="col-sm-2"><b>Program Studi</b></p>
+            <p class="col-sm-10" id="prodi"></p>
+            <p class="col-sm-2"><b>Foto Mahasiswa</b></p>
+            <img id="foto" src="" alt="Foto CyberCampus" width="150" height="200">
+        </div>
+    </div>
 </body>
 </html>
