@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Database Mahasiswa UNAIR</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script>
         function getPddiktiData(nim) {
@@ -28,13 +28,17 @@
                 text = "NIM Harus memiliki 12 angka karakter!";
                 isValid = false;
             } else {
-                text = "Input valid";
+                text = "Included NIM is valid, processing data...";
                 isValid = true;
             }
-            document.getElementById("warning-error").innerHTML = text;
             if(isValid) {
+                document.getElementById("warning-error").innerHTML = text;
+                document.getElementById("warning-error").setAttribute("class", "alert alert-success")
                 getData(t_nim);
                 getPddiktiData(t_nim);
+            } else {
+                document.getElementById("warning-error").innerHTML = text;
+                document.getElementById("warning-error").setAttribute("class", "alert alert-warning")
             }
         }
         //0 8 2 0 1 1 8 3 3 0 6  0
@@ -71,8 +75,9 @@
                     prodi = "Statistika";
                     break;
             }
-
+            document.getElementById("nimmhs").innerHTML = nim;
             document.getElementById("foto").setAttribute("src", url);
+            document.getElementById("download-content").setAttribute("href", url);
             document.getElementById("angkatan").innerHTML = angkatan;
             document.getElementById("prodi").innerHTML = prodi;
         }
@@ -86,18 +91,26 @@
         <p><b>Input NIM</b></p>
         <input class="form-control" type="text" id="nim"><br>
         <input class="btn btn-success btn-sm" type="button" value="Submit" placeholder="082011833060" onclick="validateNim()"><br><br>
-        <div id="warning-error"class="alert alert-warning" role="alert">
+        <div id="warning-error"class="" role="alert">
             
         </div>
-        <div class="row">
-            <p class="col-sm-2"><b>Nama Mahasiswa</b></p>
-            <p class="col-sm-10">Pending</p>
-            <p class="col-sm-2"><b>Tahun Angkatan</b></p>
-            <p class="col-sm-10" id="angkatan">-</p>
-            <p class="col-sm-2"><b>Program Studi</b></p>
-            <p class="col-sm-10" id="prodi"></p>
-            <p class="col-sm-2"><b>Foto Mahasiswa</b></p>
-            <img id="foto" src="" alt="Foto CyberCampus" width="150" height="200">
+        <div class="card">
+        <div class="row card-body">
+                <h3 class="col-sm-12">Data Mahasiswa</h3>
+                <p class="col-sm-2"><b>Nama Mahasiswa</b></p>
+                <p class="col-sm-10">-</p>
+                <p class="col-sm-2"><b>Nomor Induk Mahasiswa</b></p>
+                <p class="col-sm-10" id="nimmhs"></p>
+                <p class="col-sm-2"><b>Tahun Angkatan</b></p>
+                <p class="col-sm-10" id="angkatan">-</p>
+                <p class="col-sm-2"><b>Program Studi</b></p>
+                <p class="col-sm-10" id="prodi">-</p>
+                <p class="col-sm-2"><b>Foto Mahasiswa</b></p>
+                <div class="col-sm-10">
+                    <img class="" id="foto" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="Foto CyberCampus" width="150" height="200"><br>
+                </div><br><br>
+                <a target="_BLANK" id="download-content" class="col-sm-12 btn btn-sm btn-success" href="#" download>Download</a>
+            </div>
         </div>
     </div>
 </body>
