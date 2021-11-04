@@ -14,6 +14,7 @@
             xhttp.onload = function() {
                 document.getElementById("fname").innerHTML = this.responseText;
             }
+            xhttp.responseType = "json";
             xhttp.open("GET", url, true);
             xhttp.send();
         }
@@ -100,16 +101,16 @@
                 <p class="col-sm-2"><b>Nama Mahasiswa</b></p>
                 <p class="col-sm-10">-</p>
                 <p class="col-sm-2"><b>Nomor Induk Mahasiswa</b></p>
-                <p class="col-sm-10" id="nimmhs"></p>
+                <p class="col-sm-10" id="nimmhs">-</p>
                 <p class="col-sm-2"><b>Tahun Angkatan</b></p>
                 <p class="col-sm-10" id="angkatan">-</p>
                 <p class="col-sm-2"><b>Program Studi</b></p>
                 <p class="col-sm-10" id="prodi">-</p>
                 <p class="col-sm-2"><b>Foto Mahasiswa</b></p>
                 <div class="col-sm-10">
-                    <img class="" id="foto" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="Foto CyberCampus" width="150" height="200"><br>
+                    <img class="m-2" id="foto" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="Foto CyberCampus" width="150" height="200"><br>
                 </div><br><br>
-                <a target="_BLANK" id="download-content" class="col-sm-12 btn btn-sm btn-success" href="#" download>Download</a>
+                <a target="_BLANK" id="download-content" class="col-sm-12 btn btn-sm btn-success" href="" download>Download Pictures</a>
             </div>
         </div>
     </div>
