@@ -12,8 +12,8 @@
             var url = "https://api-frontend.kemdikbud.go.id/hit_mhs/";
             url += nim;
             //xhttp.responseType = "json";
-            xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
             xhttp.open("GET", url, true);
+            xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
             xhttp.send(null);
             console.log(xhttp.responseText);
             return xhttp.responseText;
